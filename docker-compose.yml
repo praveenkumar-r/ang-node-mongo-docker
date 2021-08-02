@@ -1,0 +1,23 @@
+version: "3"
+services:
+  web:
+    build: ./angular-mongo-node-DOCKER
+    ports:
+      - "8084:80"
+    links:
+      - node
+    volumes:
+      - "./angular-mongo-node-DOCKER/dist/angular-mongo-node-DOCKER:/usr/share/nginx/html"
+  node:
+    restart: always
+    build: ./node-app
+    ports:
+      - "3001:3000"
+    volumes:
+      - "./node-app:/usr/app"
+    links:
+      - mongo
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"

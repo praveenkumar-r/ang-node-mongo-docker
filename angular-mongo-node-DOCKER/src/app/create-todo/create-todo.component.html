@@ -1,0 +1,105 @@
+<div class="container">
+  <div id="header">
+    Create your task !!!
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <form
+        name="todoForm"
+        [formGroup]="todoForm"
+        (ngSubmit)="onSubmit()"
+        novalidate
+      >
+        <div class="mb-1">
+          <mat-form-field class="example-full-width">
+            <mat-label>ToDo Title</mat-label>
+            <input
+              matInput
+              placeholder="Enter Title"
+              formControlName="title"
+              autofocus
+              value=""
+              required
+            />
+            <mat-error *ngIf="f.title.errors?.required"
+              >Enter TODO Title</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="mb-1">
+          <mat-form-field class="example-full-width">
+            <mat-label>ToDo Description</mat-label>
+            <input
+              matInput
+              placeholder="Enter Description"
+              formControlName="description"
+              autofocus
+              value=""
+              required
+            />
+            <mat-error *ngIf="f.description.errors?.required"
+              >Enter TODO Description</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="mb-1 mt-2">
+          <label>Start Date Time</label>
+          <input
+            class="form-control pointer-event"
+            type="text"
+            placeholder="Select Date and Time"
+            mwlFlatpickr
+            formControlName="startDateTime"
+            readonly
+            [enableTime]="true"
+            [dateFormat]="'Y-m-d H:i'"
+          />
+          <small *ngIf="submitted && f.startDateTime.errors?.required"
+            >Enter TODO StartDate</small
+          >
+        </div>
+
+        <div class="mb-1 mt-3">
+          <label>End Date Time</label>
+          <input
+            class="form-control pointer-event"
+            type="text"
+            placeholder="Select Date and Time"
+            mwlFlatpickr
+            formControlName="endDateTime"
+            readonly
+            [enableTime]="true"
+            [dateFormat]="'Y-m-d H:i'"
+          />
+          <small *ngIf="submitted && f.endDateTime.errors?.required"
+            >Enter TODO EndDate</small
+          >
+        </div>
+
+        <div class="mb-1">
+          <mat-form-field class="example-full-width">
+            <mat-label>Location</mat-label>
+            <input
+              matInput
+              placeholder="Enter location"
+              formControlName="location"
+              autofocus
+              value=""
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="mb-1">
+          <span class="mr-2">Add to Google Calendar</span>
+          <mat-slide-toggle formControlName="calendar"></mat-slide-toggle>
+        </div>
+
+        <div id="footer" class="mt-2">
+          <button type="submit" mat-raised-button color="primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
